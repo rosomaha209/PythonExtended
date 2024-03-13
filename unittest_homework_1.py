@@ -85,6 +85,7 @@ class TestLibraryCheckoutBook(unittest.TestCase):
 
     def test_checkout_book_already_checked_out(self):
         # Сценарій, коли книга вже взята іншим користувачем
+        # P.S this test fail
         self.library.checkout_book(self.user1.user_id, self.book1)
         with self.assertRaises(Exception) as context:
             self.library.checkout_book(self.user2.user_id, self.book1)
@@ -92,6 +93,7 @@ class TestLibraryCheckoutBook(unittest.TestCase):
 
     def test_checkout_book_to_unregistered_user(self):
         # Спроба взяти книгу незареєстрованим користувачем
+        # P.S this test fail
         unregistered_user = Member("Unregistered User", 99)
         with self.assertRaises(Exception) as context:
             self.library.checkout_book(unregistered_user.user_id, self.book1)
@@ -99,6 +101,7 @@ class TestLibraryCheckoutBook(unittest.TestCase):
 
     def test_checkout_book_not_in_library(self):
         # Спроба взяти книгу, якої немає в бібліотеці
+        # P.S this test fail
         non_existent_book = Book("Non-Existent Book", "No Author", "No ISBN")
         with self.assertRaises(Exception) as context:
             self.library.checkout_book(self.user1.user_id, non_existent_book)
